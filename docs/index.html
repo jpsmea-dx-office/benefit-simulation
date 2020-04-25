@@ -74,8 +74,8 @@ function calculate(){
   document.getElementById("yoy10").textContent = Math.round(yoy[9] * 1000)/10 + '％';
   document.getElementById("yoy11").textContent = Math.round(yoy[10] * 1000)/10 + '％';
   document.getElementById("yoy12").textContent = Math.round(yoy[11] * 1000)/10 + '％';
-  document.getElementById("sum1").textContent = Number(sum1).toLocalString() + ',000円';
-  document.getElementById("sum2").textContent = Number(sum2).toLocalString() + ',000円';
+  document.getElementById("sum1").textContent = Number(sum1).toLocaleString() + ',000円';
+  document.getElementById("sum2").textContent = Number(sum2).toLocaleString() + ',000円';
 
   if(Math.min.apply(null,yoy.filter(Boolean)) <= 0.5){
     document.getElementById("result").textContent = '対象です';

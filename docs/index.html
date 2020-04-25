@@ -6,8 +6,10 @@ table         { border-collapse: collapse; }
 td, th        { border: solid 1px; padding: 0.3em; }
 td            { text-align: right; }
 th            { background-color: #efefef; }
+p             { text-indent: 1em; }
 .number       { text-align: right; }
 .text         { text-align: left; }
+#result       { font-size: 16px; font-weight:bold; color:crimson; text-decoration: underline;}
 -->
 </style>
 <script type="text/javascript">
@@ -75,7 +77,7 @@ function calculate(){
   document.getElementById("sum2").textContent = sum2 + ',000円';
 
   if(Math.min.apply(null,yoy.filter(Boolean)) <= 0.5){
-    document.getElementById("result").value = '対象です';
+    document.getElementById("result").textContent = '対象です';
     document.getElementById("target").textContent = Number(Math.min.apply(null,num3)*1000).toLocaleString() + '円';
     if(diff > 2000){
       document.getElementById("houjin").textContent = '2,000,000円';
@@ -93,7 +95,7 @@ function calculate(){
       document.getElementById("kojin").textContent = '0円';
     }
   } else {
-    document.getElementById("result").value = '対象ではありません';
+    document.getElementById("result").textContent = '対象ではありません';
   }
 }
 -->
@@ -190,11 +192,11 @@ function calculate(){
     <td id="yoy"></td>
   </tr>
 </table>    
-
-<br>
+<p>
 <input type="button" value="計算する" onclick="calculate()">
+</p>
 <h3>持続化給付金の対象かどうか</h3>
-<input type="text" class="text" id="result" size="16">
+<p><span id="result"></span></p>
 <h3>持続化給付金の支給見込額</h3>
 <p>前年同月比50%以下で一番低い売上：<span id="target"></span></p>
 <table>
@@ -211,5 +213,11 @@ function calculate(){
     <td id="kojin"></td>
   </tr>
 </table>
+<h3>注意事項</h3>
+<ul>
+  <li>本ツールは実際の給付額を保証するものではありません。</li>
+  <li><a href="https://www.meti.go.jp/covid-19/pdf/kyufukin.pdf">こちら</a>の資料を基に作成しています。</li>
+  <li>持続化給付金の詳細は今後変更されることがありますので、最新情報をご確認ください。</li>
+</ul>
 </body>
 </html>

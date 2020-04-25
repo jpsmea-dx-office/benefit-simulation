@@ -1,0 +1,215 @@
+<html>
+<head>
+<style type="text/css">
+<!--
+table         { border-collapse: collapse; }
+td, th        { border: solid 1px; padding: 0.3em; }
+td            { text-align: right; }
+th            { background-color: #efefef; }
+.number       { text-align: right; }
+.text         { text-align: left; }
+-->
+</style>
+<script type="text/javascript">
+<!--
+function calculate(){
+  var result = "";
+  var num1 = [];
+  var num2 = [];
+  var num3 = [];
+  var yoy = [];
+
+  num1.push(document.getElementById("num101").value);
+  num1.push(document.getElementById("num102").value);
+  num1.push(document.getElementById("num103").value);
+  num1.push(document.getElementById("num104").value);
+  num1.push(document.getElementById("num105").value);
+  num1.push(document.getElementById("num106").value);
+  num1.push(document.getElementById("num107").value);
+  num1.push(document.getElementById("num108").value);
+  num1.push(document.getElementById("num109").value);
+  num1.push(document.getElementById("num110").value);
+  num1.push(document.getElementById("num111").value);
+  num1.push(document.getElementById("num112").value);
+  num2.push(document.getElementById("num201").value);
+  num2.push(document.getElementById("num202").value);
+  num2.push(document.getElementById("num203").value);
+  num2.push(document.getElementById("num204").value);
+  num2.push(document.getElementById("num205").value);
+  num2.push(document.getElementById("num206").value);
+  num2.push(document.getElementById("num207").value);
+  num2.push(document.getElementById("num208").value);
+  num2.push(document.getElementById("num209").value);
+  num2.push(document.getElementById("num210").value);
+  num2.push(document.getElementById("num211").value);
+  num2.push(document.getElementById("num212").value);
+
+  for(var i=0; i<12; i++ ){
+    var ans = num2[i] / num1[i];
+    if(isNaN(ans)||ans == 0){
+      yoy.push(null);  
+    } else {
+      yoy.push(ans);
+      if(ans <= 0.5){
+        num3.push(num2[i])
+      }
+    }
+  } 
+  var sum1 = num1.reduce(function(a, x){return a + ((x || 0) - 0);}, 0);
+  var sum2 = num2.reduce(function(a, x){return a + ((x || 0) - 0);}, 0); 
+  var diff = sum1 - Math.min.apply(null,num3)*12;
+
+  document.getElementById("yoy1").textContent = Math.round(yoy[0] * 1000)/10 + '％';
+  document.getElementById("yoy2").textContent = Math.round(yoy[1] * 1000)/10 + '％';
+  document.getElementById("yoy3").textContent = Math.round(yoy[2] * 1000)/10 + '％';
+  document.getElementById("yoy4").textContent = Math.round(yoy[3] * 1000)/10 + '％';
+  document.getElementById("yoy5").textContent = Math.round(yoy[4] * 1000)/10 + '％';
+  document.getElementById("yoy6").textContent = Math.round(yoy[5] * 1000)/10 + '％';
+  document.getElementById("yoy7").textContent = Math.round(yoy[6] * 1000)/10 + '％';
+  document.getElementById("yoy8").textContent = Math.round(yoy[7] * 1000)/10 + '％';
+  document.getElementById("yoy9").textContent = Math.round(yoy[8] * 1000)/10 + '％';
+  document.getElementById("yoy10").textContent = Math.round(yoy[9] * 1000)/10 + '％';
+  document.getElementById("yoy11").textContent = Math.round(yoy[10] * 1000)/10 + '％';
+  document.getElementById("yoy12").textContent = Math.round(yoy[11] * 1000)/10 + '％';
+  document.getElementById("sum1").textContent = sum1 + ',000円';
+  document.getElementById("sum2").textContent = sum2 + ',000円';
+
+  if(Math.min.apply(null,yoy.filter(Boolean)) <= 0.5){
+    document.getElementById("result").value = '対象です';
+    document.getElementById("target").textContent = Number(Math.min.apply(null,num3)*1000).toLocaleString() + '円';
+    if(diff > 2000){
+      document.getElementById("houjin").textContent = '2,000,000円';
+    } else if (diff > 0) {
+      document.getElementById("houjin").textContent = Number(diff*1000).toLocaleString() + '円';
+    } else {
+      document.getElementById("houjin").textContent = '0円';
+    }
+
+    if(diff > 1000){
+      document.getElementById("kojin").textContent = '1,000,000円';
+    } else if (diff > 0) {
+      document.getElementById("kojin").textContent = Number(diff*1000).toLocaleString() + '円';
+    } else {
+      document.getElementById("kojin").textContent = '0円';
+    }
+  } else {
+    document.getElementById("result").value = '対象ではありません';
+  }
+}
+-->
+</script>
+
+</head>
+<body>  
+<h2>持続化給付金　試算シミュレーション</h2>
+<hr>
+<h3>2019年、2020年の売上を入力してください。</h3>
+<table>
+  <tr>
+    <th>月</th>
+    <th>2019年</th>
+    <th>2020年</th>
+    <th>前年同月比</th>
+  </tr>
+  <tr>
+    <td>1月</td>
+    <td><input type="text" class="number" id="num101" size="5">,000円</td>
+    <td><input type="text" class="number" id="num201" size="5">,000円</td>
+    <td id="yoy1"></td>
+  </tr>
+  <tr>
+    <td>2月</td>
+    <td><input type="text" class="number" id="num102" size="5">,000円</td>
+    <td><input type="text" class="number" id="num202" size="5">,000円</td>
+    <td id="yoy2"></td>
+  </tr>
+  <tr>
+    <td>3月</td>
+    <td><input type="text" class="number" id="num103" size="5">,000円</td>
+    <td><input type="text" class="number" id="num203" size="5">,000円</td>
+    <td id="yoy3"></td>
+  </tr>
+  <tr>
+    <td>4月</td>
+    <td><input type="text" class="number" id="num104" size="5">,000円</td>
+    <td><input type="text" class="number" id="num204" size="5">,000円</td>
+    <td id="yoy4"></td>
+  </tr>
+  <tr>
+    <td>5月</td>
+    <td><input type="text" class="number" id="num105" size="5">,000円</td>
+    <td><input type="text" class="number" id="num205" size="5">,000円</td>
+    <td id="yoy5"></td>
+  </tr>
+  <tr>
+    <td>6月</td>
+    <td><input type="text" class="number" id="num106" size="5">,000円</td>
+    <td><input type="text" class="number" id="num206" size="5">,000円</td>
+    <td id="yoy6"></td>
+  </tr>
+  <tr>
+    <td>7月</td>
+    <td><input type="text" class="number" id="num107" size="5">,000円</td>
+    <td><input type="text" class="number" id="num207" size="5">,000円</td>
+    <td id="yoy7"></td>
+  </tr>
+  <tr>
+    <td>8月</td>
+    <td><input type="text" class="number" id="num108" size="5">,000円</td>
+    <td><input type="text" class="number" id="num208" size="5">,000円</td>
+    <td id="yoy8"></td>
+  </tr>
+  <tr>
+    <td>9月</td>
+    <td><input type="text" class="number" id="num109" size="5">,000円</td>
+    <td><input type="text" class="number" id="num209" size="5">,000円</td>
+    <td id="yoy9"></td>
+  </tr>
+  <tr>
+    <td>10月</td>
+    <td><input type="text" class="number" id="num110" size="5">,000円</td>
+    <td><input type="text" class="number" id="num210" size="5">,000円</td>
+    <td id="yoy10"></td>
+  </tr>
+  <tr>
+    <td>11月</td>
+    <td><input type="text" class="number" id="num111" size="5">,000円</td>
+    <td><input type="text" class="number" id="num211" size="5">,000円</td>
+    <td id="yoy11"></td>
+  </tr>
+  <tr>
+    <td>12月</td>
+    <td><input type="text" class="number" id="num112" size="5">,000円</td>
+    <td><input type="text" class="number" id="num212" size="5">,000円</td>
+    <td id="yoy12"></td>
+  </tr>
+  <tr>
+    <td>合計</td>
+    <td id="sum1"></td>
+    <td id="sum2"></td>
+    <td id="yoy"></td>
+  </tr>
+</table>    
+
+<br>
+<input type="button" value="計算する" onclick="calculate()">
+<h3>持続化給付金の対象かどうか</h3>
+<input type="text" class="text" id="result" size="16">
+<h3>持続化給付金の支給見込額</h3>
+<p>前年同月比50%以下で一番低い売上：<span id="target"></span></p>
+<table>
+  <tr>
+    <th></th>
+    <th>支給見込額</th>
+  </tr>
+  <tr>
+    <td class="text">法人の場合</td>
+    <td id="houjin"></td>
+  </tr>
+  <tr>
+    <td class="text">個人事業主の場合</td>
+    <td id="kojin"></td>
+  </tr>
+</table>
+</body>
+</html>

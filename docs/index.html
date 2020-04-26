@@ -16,7 +16,7 @@ p             { text-indent: 1em; }
 <script type="text/javascript">
 <!--
 function calculate(){
-  var result = "";
+
   var num1 = [];
   var num2 = [];
   var num3 = [];
@@ -49,7 +49,7 @@ function calculate(){
 
   for(var i=0; i<12; i++ ){
     var ans = num2[i] / num1[i];
-    if(isNaN(ans)||ans == 0){
+    if(isNaN(ans)){
       yoy.push(null);  
     } else {
       yoy.push(ans);

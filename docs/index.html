@@ -55,13 +55,16 @@ function calculate(){
     } else {
       yoy.push(ans);
       if(ans <= 0.5){
+        if(num2[i]==""){
+        } else {
         num3.push(num2[i])
+        }
       }
     }
   } 
   var sum1 = num1.reduce(function(a, x){return a + ((x || 0) - 0);}, 0);
   var sum2 = num2.reduce(function(a, x){return a + ((x || 0) - 0);}, 0); 
-  var diff = sum1 - Math.min.apply(null,num3)*12;
+  var diff = Math.floor((sum1 - Math.min.apply(null,num3.filter(Boolean))*12)/100)*100;
 
   document.getElementById("yoy1").textContent = Math.round(yoy[0] * 1000)/10 + '％';
   document.getElementById("yoy2").textContent = Math.round(yoy[1] * 1000)/10 + '％';
@@ -104,8 +107,11 @@ function calculate(){
 </script>
 
 <p>持続化給付金の試算シミュレーションツールを公開いたします。</p>
+<p>本ツールの作成にあたり、増澤陸様の<a href="https://note.com/rick08/n/n34654a67742b">noteの記事「持続化給付金のもらい方、支給基準や金額、帳簿の作成方法について」およびツール</a>を参考にさせていただいております。また増澤様の記事に帳簿のサンプルも掲載されておりますので、合わせてご覧ください。増澤様、ありがとうございました。</p>
 
-<h2>持続化給付金　試算シミュレーション</h2>
+<hr>
+
+<h2>持続化給付金　試算シミュレーションツール</h2>
 
 
 <h3>2019年、2020年の売上を入力してください。</h3>
@@ -226,7 +232,6 @@ function calculate(){
   <li>本ツールは実際の給付額を保証するものではありません。</li>
   <li><a href="https://www.meti.go.jp/covid-19/pdf/kyufukin.pdf">こちら</a>の資料を基に作成しています。</li>
   <li>持続化給付金の詳細は今後変更されることがありますので、最新情報をご確認ください。</li>
-  <li>本ツールの作成にあたり、増澤陸様の<a href="https://note.com/rick08/n/n34654a67742b">noteの記事およびツール</a>を参考にさせていただいております。また増澤様の記事に帳簿のサンプルも掲載されておりますので、ご覧ください。増澤様、ありがとうございました。</li>
 </ul>
 </body>
 </html>
